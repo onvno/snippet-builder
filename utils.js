@@ -1,3 +1,5 @@
+const path = require('path');
+
 /**
  * 数组添加Commit
  * Add Commit
@@ -32,8 +34,18 @@ const filterMenu = (list) => {
     return list.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item))
 }
 
+/**
+ * 获取真实路径
+ * Get Real Path
+ * @param {String} base 
+ */
+const getRealPath = (base) => {
+    return path.isAbsolute(base) ? base : path.join(process.cwd(), base);
+}
+
 module.exports = {
     handleCommit,
     buildBodyFromText,
     filterMenu,
+    getRealPath,
 }

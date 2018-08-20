@@ -15,6 +15,8 @@ $ sn create
 $ sn create --out yaml/file/path --name yamlFileName
 ```
 
+
+
 **YAML片段转为code snippet**
 
 ```
@@ -31,14 +33,31 @@ $ sn convert --entry entry/yaml/path --out output/code-snippet/path
 * 全为文件 - 所有文件最终合成一个名为`codeRhythm`的代码片段文件
 * 既包含文件夹又包含文件 - 考虑到输出名可能会冲突覆盖，这里不支持，会报错提醒
 
-**code snippet转为YAML片段**
+
+
+**code snippet反向转为YAML片段**
 
 ```
-# 输入目录为必填， 默认out到当前目录的modules文件夹
+# 输入目录为必填， 默认输出到当前目录的modules文件夹
 $ sn restore --entry entry/code-snippet/path
 
 # 指定输入，输出目录
 $ sn restore --entry entry/code-snippet/path --out output/yaml/filepath
+```
+
+
+
+**片段保存到vscode指定代码片段目录**
+
+* 支持指定代码片段文件或代码片段文件
+* 自动过滤掉子文件夹或后缀不为`json`，`code-snippets`的文件
+
+```
+# 输入目录默认为当前目录
+$ sn vscode
+
+# 指定输入目录
+$ sn vscode --entry snippet/path
 ```
 
 

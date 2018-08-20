@@ -1,8 +1,8 @@
 #!/usr/bin/env node --harmony
 
-const fse = require("fs-extra");
 const convert = require('./convert.js');
 const restore = require('./restore.js');
+const create = require('./create.js')
 
 
 /**
@@ -41,19 +41,33 @@ const argv = require('yargs')
                 describe: '[Option] Output dir for the converted YAML file'
             })
     })
+    .command('create', 'create template', function(yargs) {
+        return yargs
+            .options('out', {
+                alias: 'O',
+                describe: '[Option] Output path'
+            })
+            .options('name', {
+                alias: 'N',
+                describe: '[Option] Template name',
+            })
+    })
     .help().argv;
 
 
 const argvCmdAry = argv._;
 const cmdAry = [
     'convert',
-    'resotre',
+    'restore',
+    'create'
 ]
 
 if(argvCmdAry.includes(cmdAry[0])) {
     convert(argv);
 } else if (argvCmdAry.includes(cmdAry[1])) {
     restore(argv);
+} else if (argvCmdAry.includes(cmdAry[2])) {
+    create(argv)
 }
 
 

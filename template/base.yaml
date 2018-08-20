@@ -1,0 +1,10 @@
+# 如需要单一文件多条代码片段，可以当前文件中拷贝多份修改内容即可
+-
+    prefix: "替换为自己的自动完成前缀如@js_array.every"
+    body: |-
+        // 替换以下为需要的代码片段，留意下yaml的层级就可以
+        function isBigEnough(element, index, array) {
+            return (element >= 10);
+        }
+        var passed = [12, 5, 8, 130, 44].every(isBigEnough);
+    description: "替换为对代码片段的描述""

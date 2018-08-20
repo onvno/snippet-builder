@@ -2,8 +2,8 @@
 
 const convert = require('./convert.js');
 const restore = require('./restore.js');
-const create = require('./create.js')
-
+const create = require('./create.js');
+const vscode = require('./vscode.js');
 
 /**
  * 计划实现：
@@ -52,6 +52,13 @@ const argv = require('yargs')
                 describe: '[Option] Template name',
             })
     })
+    .command('vscode', 'save snippet to vscode', function(yargs) {
+        return yargs
+            .options('entry', {
+                alias: 'E',
+                describe: '[Option] Entry Folder or File'
+            })
+    })
     .help().argv;
 
 
@@ -59,7 +66,8 @@ const argvCmdAry = argv._;
 const cmdAry = [
     'convert',
     'restore',
-    'create'
+    'create',
+    'vscode',
 ]
 
 if(argvCmdAry.includes(cmdAry[0])) {
@@ -67,7 +75,9 @@ if(argvCmdAry.includes(cmdAry[0])) {
 } else if (argvCmdAry.includes(cmdAry[1])) {
     restore(argv);
 } else if (argvCmdAry.includes(cmdAry[2])) {
-    create(argv)
+    create(argv);
+} else if (argvCmdAry.includes(cmdAry[3])) {
+    vscode(argv);
 }
 
 

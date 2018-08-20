@@ -1,4 +1,6 @@
 const path = require('path');
+const os = require('os');
+const process = require('process');
 
 /**
  * 数组添加Commit
@@ -43,9 +45,42 @@ const getRealPath = (base) => {
     return path.isAbsolute(base) ? base : path.join(process.cwd(), base);
 }
 
+/**
+ * vscode snippet path
+ */
+const getVsCodeSnippetPath = () => {
+    let vsCodeUserSnippetPath;
+    const osName = os.type();
+    
+    switch (osName) {
+        case ("Darwin"): {
+            vsCodeUserSnippetPath = process.env.HOME + "/Library/Application Support/Code/User/snippets/";
+            break;
+        }
+        case ("Linux"): {
+            vsCodeUserSnippetPath = process.env.HOME + "/.config/Code/User/snippets/";
+            break;
+        }
+        case ("Windows_NT"): {
+            vsCodeUserSnippetPath = process.env.APPDATA + "\\Code\\User\\snippets\\";
+            break;
+        }
+        default: {
+            //BSD?
+            vsCodeUserSnippetPath = process.env.HOME + "/.config/Code/User/snippets/";
+            break;
+        }
+    }
+
+    return vsCodeUserSnippetPath;
+}
+
+
+
 module.exports = {
     handleCommit,
     buildBodyFromText,
     filterMenu,
     getRealPath,
+    getVsCodeSnippetPath,
 }

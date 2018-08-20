@@ -1,6 +1,6 @@
 {
   "name": "snippet-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cumtomize Snippets for Code Rhythm",
   "main": "index.js",
   "bin": {
